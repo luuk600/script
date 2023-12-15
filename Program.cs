@@ -1,7 +1,11 @@
-﻿namespace week5._2
+﻿using System.Security.Cryptography.X509Certificates;
+using static System.Net.Mime.MediaTypeNames;
+
+namespace Cat_Roulette
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
             int CannonRounds = 6;
@@ -10,10 +14,12 @@
             Random RNGCat = new Random();
             string GiveShoot;
             int CatNumber;
-            bool catshot = false;
+
+            bool catShot = false;
+
             int numOfPlayers = 2;
             string[] playerNames = new string[numOfPlayers];
-
+            
 
 
             int rollD20;
@@ -32,7 +38,7 @@
                 Console.WriteLine("Press enter if you want to play the game: ");
                 Console.ReadLine();
             }
-
+           
 
             for (int i = 0; i < playerNames.Length; i++)
             {
@@ -47,36 +53,36 @@
             Console.WriteLine();
 
             //cat roulette starts
-            CatRoulette();
+           
+                CatRoulette();
+           
 
             void CatRoulette()
             {
-                catshot = false;
-                while (!catshot)
-                {
+
                     for (int i = 0; i < Catnumber.Length; i++)
                     {
-
-                        Console.Write($"{playerNames[0]}, Type shoot and press enter: ");
+                if (catShot == false)
+                {
+                    Console.Write($"{playerNames[0]}, Type shoot and press enter: ");
                         GiveShoot = Console.ReadLine();
-                        if (GiveShoot == "")
+                        if (GiveShoot == "shoot")
                         {
                             CatNumber = RNGCat.Next(1, 9);
 
                             if (CatNumber == 7)
                             {
-                                Console.Clear();
+                            catShot = true;
+                            Console.Clear();
                                 Console.WriteLine("You shot a cat with the cannon");
-                                catshot = true;
                                 WinningScreenP1();
                             }
                             if (CatNumber == 8)
                             {
-                                Console.Clear();
+                            catShot = true;
+                            Console.Clear();
                                 Console.WriteLine("You shot a cat with the cannon");
-                                catshot = true;
                                 WinningScreenP1();
-
                             }
                             else
                             {
@@ -93,28 +99,27 @@
 
 
 
-
                         Console.Write($"{playerNames[1]}, Type shoot and press enter: ");
                         GiveShoot = Console.ReadLine();
 
 
-                        if (GiveShoot == "")
+                        if (GiveShoot == "shoot")
                         {
                             CatNumber = RNGCat.Next(1, 9);
 
                             if (CatNumber == 7)
                             {
-                                Console.Clear();
+                            catShot = true;
+                            Console.Clear();
                                 Console.WriteLine("You shot a cat with the cannon");
                                 WinningScreenP2();
-                                catshot = true;
                             }
                             if (CatNumber == 8)
                             {
-                                Console.Clear();
+                            catShot = true;
+                            Console.Clear();
                                 Console.WriteLine("You shot a cat with the cannon");
                                 WinningScreenP2();
-                                catshot = true;
                             }
                             else
                             {
@@ -131,60 +136,23 @@
                             Console.WriteLine("That is an Invalid input");
                             CatRoulette();
                         }
+
                     }
-
-
-
-
-
-                    void WinningScreenP1()
-                    {
-                        string again;
-                        Console.WriteLine($"Congrats {playerNames[0]}, You have won the game!");
-                        Console.WriteLine("if you want to play again type yes");
-                        Console.WriteLine("if you want to leave type no");
-                        again = Console.ReadLine();
-                        if (again == "yes")
-                        {
-                            CatRoulette();
-                            Console.WriteLine("lets start again");
-                        }
-                        else if (again == "no")
-                        {
-                            Environment.Exit(0);
-                            Console.WriteLine("lets start again");
-                        }
-                        else
-                        {
-                            Console.WriteLine("thats not an option");
-                            WinningScreenP1();
-                        }
-                    }
-                    void WinningScreenP2()
-                    {
-                        string again;
-                        Console.WriteLine($"Congrats {playerNames[1]}, You have won the game!");
-                        Console.WriteLine("if you want to play again type yes");
-                        Console.WriteLine("if you want to leave type no");
-                        again = Console.ReadLine();
-                        if( again == "yes")
-                        {
-                            CatRoulette();
-                            Console.WriteLine("lets start again");
-                        }
-                        else if ( again == "no") 
-                        { 
-                            Environment.Exit(0);
-                            Console.WriteLine("lets start again");
-                        }
-                        else
-                        {
-                            Console.WriteLine("thats not an option");
-                            WinningScreenP2();
-                        }
-                    }
+                    
                 }
-            }
+               
+
+                void WinningScreenP1()
+                {
+                    
+                    Console.WriteLine($"Congrats {playerNames[0]}, You have won the game!");
+                    //Application.Exit();
+                }
+                void WinningScreenP2()
+                {
+                    
+                    Console.WriteLine($"Congrats {playerNames[1]}, You have won the game!");
+                }
 
 
                 //Console.WriteLine("Welcome to cat roulette user!");
@@ -193,8 +161,8 @@
 
 
             }
-
-
+           
 
         }
-    }   
+    }
+}
